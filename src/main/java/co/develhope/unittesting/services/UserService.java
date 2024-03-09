@@ -51,4 +51,8 @@ public class UserService {
             return null;
         }
     }
+
+    public Optional<User> findById(Long id) {
+        return repo.findById(id);
+    }
 }

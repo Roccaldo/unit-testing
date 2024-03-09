@@ -36,6 +36,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/find/{id}")
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        Optional<User> foundUser = userService.findById(id);
+        if (foundUser.isPresent()) {
+            return ResponseEntity.ok(foundUser.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PutMapping("/modify/{id}")
     public ResponseEntity<User> modify(@PathVariable Long id, @RequestBody User user) {
         Optional<User> foundUser = userService.modify(id, user);
